@@ -54,4 +54,19 @@ def humah_vs_human():
         print(f'победил {first_move2}')                    
                
 humah_vs_human()
-~~~       
+~~~ 
+Напишите программу, 
+удаляющую из текста все слова,
+содержащие ""абв"".
+~~~
+text = 'авиифбвабв sdfffgc аалллауддыд абвкуувабв какабвкааап аьвабвабв'
+
+
+def del_words(text):
+    text = list(filter(lambda x: 'абв' not in x, text.split()))
+    return " ".join(text)
+
+
+text = del_words(text)
+print(text)
+~~~
