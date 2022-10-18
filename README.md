@@ -123,4 +123,40 @@ def main():
             print('Ничья!')      
             break    
 main()
-~~~                       
+~~~
+Реализуйте RLE алгоритм: реализуйте модуль
+сжатия и восстановления данных.
+Входные и выходные данные хранятся 
+в отдельных текстовых файлах.
+~~~
+from unittest import result
+
+
+s = 'aaaddddffffttt'
+
+def encode(s):
+    encoding = ""
+    i = 0
+    while i < len(s):
+        count = 1
+        while i + 1 < len(s) and s[i] == s[i + 1]:
+            count = count + 1
+            i = i + 1
+        encoding += str(count) + s[i]
+        i = i + 1
+    return encoding
+print(encode(s))
+
+def decoding(text):
+    number = ''
+    result = ''
+    for i in range(len(text)):
+        if not text[i].isalpha():
+            number += text[i]
+        else:
+            result = result + text[i] * int(number)
+            number = ''
+           
+    return result
+print(decoding(encode(s)))
+~~~                           
