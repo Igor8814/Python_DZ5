@@ -70,3 +70,57 @@ def del_words(text):
 text = del_words(text)
 print(text)
 ~~~
+Создайте программу для игры в ""Крестики-нолики"".
+~~~
+from ast import While
+
+
+playing_field = list(range(1, 10))
+coard_win = [(1, 2, 3), (4, 5, 6), (7, 8, 9), (1, 4, 7), (2, 5, 8), (3, 6, 9), (1, 5, 9), (3, 5, 7)]
+
+def print_fild():
+    print('-------------')
+    for i in range(3):
+        print('|', playing_field[0 + i * 3], '|', playing_field[1 + i * 3], '|', playing_field[2 + i * 3], '|')
+    print('------------')
+    
+def game_progress(player_token):
+    while True:
+        value = input(f'Куда поставить? {player_token} ')    
+        if not (value in '123456789'):
+            print('Неправильный ввод')
+            continue
+        value = int(value)
+        if str(playing_field[value - 1]) in 'XO':
+            print('Тут занято')
+            continue
+        playing_field[value - 1] = player_token
+        break
+
+def outcome_game():
+        for g in coard_win:
+            if (playing_field[g[0] - 1] == playing_field[g[1] - 1] == playing_field[g[2] - 1]):
+                return playing_field[g[1] - 1]
+        else:
+            return False
+def main():
+    count = 0
+    while True:
+        print_fild()
+        if count % 2 == 0:
+            game_progress('X')
+        else:
+            game_progress('O')
+        if count > 3:
+            winner = outcome_game()
+            if winner:
+                print_fild()
+                print(f'{winner} Ты выиграл!')
+                break  
+        count += 1
+        if count > 8:
+            print_fild()
+            print('Ничья!')      
+            break    
+main()
+~~~                       
